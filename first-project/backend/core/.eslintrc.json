@@ -13,8 +13,21 @@
     },
     "plugins": [
         "@typescript-eslint",
-        "eslint-plugin-import"
+        "eslint-plugin-import",
     ],
     "rules": {
+      "import/extensions": [
+        "error",
+        "ignorePackages",
+        {
+          "ts": "never"
+        }
+      ]
+    },
+    "settings": {
+        "import/resolver": {
+            "typescript": {}
+        }
     }
+
 }
