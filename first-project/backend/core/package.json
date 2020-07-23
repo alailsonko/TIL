@@ -11,6 +11,8 @@
     "uuidv4": "^6.2.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.4"
+    "@types/express": "^4.17.7",
+    "nodemon": "^2.0.4",
+    "typescript": "^3.9.7"
   }
 }
