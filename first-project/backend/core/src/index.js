@@ -13,7 +13,33 @@ const port = 3333
 
 
 app.get('/projects', (req, res) => {
-    return res.send({message: "hello wold"})
+    return res.json([
+        'Projeto 1',
+        'Projeto 2'
+    ])
+})
+
+app.post('/projects', (req, res) => {
+    return res.json([
+        'Projeto 1',
+        'Projeto 2',
+        'projeto 3'
+    ])
+})
+
+app.put('/projects/:id', (req, res) => {
+    return res.json([
+        'Projeto 4',
+        'Projeto 2',
+        'projeto 3'
+    ])
+})
+
+app.delete('/projects/:id', (req, res) => {
+    return res.json([
+        'Projeto 1',
+        'Projeto 2',
+    ])
 })
 
 app.listen(port, () => {
