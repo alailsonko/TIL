@@ -1,5 +1,5 @@
 const express = require('express')
-const { uuid } = require('uuidv4')
+const { uuid, isUuid } = require('uuidv4')
 
 const app = express()
 
@@ -22,9 +22,33 @@ const port = 3333
   * Request Body: content of body for edit or create one resource
   */
 
+/**
+ * Middleware:
+ *
+ * interceptor of req and can interrupt totally one req
+ * or edit the data of req
+ */
+
 const projects = [];
 
-app.get('/projects', (req, res) => {
+function logReqs(req, res, next) {
+  const { method, url } = req;
+
+  const logLabel = `[${method.toUpperCase()}] ${url}`
+
+  console.log(logLabel);
+
+  return next();
+}
+
+function validateProjectId(req, res, next) {
+   const { id } = req.params;
+   if(!isUuid(id)){
+     return res.status(400).json({ error: 'Invalid project ID.' })
+   }
+}
+
+app.get('/projects', logReqs,(req, res) => {
 
   const { title } = req.query;
 
