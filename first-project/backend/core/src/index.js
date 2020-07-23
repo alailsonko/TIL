@@ -2,6 +2,8 @@ const express = require('express')
 
 const app = express()
 
+app.use(express.json())
+
 const port = 3333
 /**
  * metthods HTTP
@@ -10,6 +12,14 @@ const port = 3333
  * PUT/PATCH: change uma information no backend
  * DELETE: delete one information in the backend
  */
+
+ /**
+  * types of parameters
+  * 
+  * Query params: filtros e paginação
+  * Route params: identify the resources which to delete
+  * Request Body: content of body for edit or create one resource
+  */
 
 
 app.get('/projects', (req, res) => {
