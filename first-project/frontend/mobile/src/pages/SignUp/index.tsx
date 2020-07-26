@@ -7,7 +7,8 @@ import {
   ScrollView,
   KeyboardAvoidingView,
   Platform,
-  View
+  View,
+  TextInput
 } from 'react-native'
 import Icon from 'react-native-vector-icons/Feather'
 
@@ -25,8 +26,12 @@ import Button from '../../components/Button'
 import logoImg from '../../assets/logo.png'
 
 const SignUp: React.FC = () => {
+  const emailInputRef = useRef<TextInput>(null)
+  const passwordInputRef = useRef<TextInput>(null)
   const formRef = useRef<FormHandles>(null)
-   const navigation = useNavigation()
+
+  const navigation = useNavigation()
+
   return (
     <>
     <KeyboardAvoidingView
@@ -42,9 +47,42 @@ const SignUp: React.FC = () => {
     </View>
     <Form onSubmit={(data) => {console.log(data);
     }} ref={formRef} style={{ width: '100%' }}>
-    <Input name="name" icon="user" placeholder="Nome" />
-    <Input name="email" icon="mail" placeholder="E-mail" />
-    <Input name="password" icon="lock" placeholder="Password" />
+
+    <Input
+    autoCapitalize="words"
+    name="name"
+    icon="user"
+    placeholder="Nome"
+    returnKeyType="next"
+    onSubmitEditing={() => {
+      emailInputRef.current?.focus()
+    }}
+    />
+
+    <Input
+    ref={emailInputRef}
+    keyboardType="email-address"
+    autoCorrect={false}
+    name="email"
+    icon="mail"
+    placeholder="E-mail"
+    returnKeyType="next"
+    onSubmitEditing={() => {
+      passwordInputRef.current?.focus()
+    }}
+    />
+
+    <Input
+
+    ref={passwordInputRef}
+    secureTextEntry
+    textContentType="newPassword"
+    name="password"
+    icon="lock"
+    placeholder="Password"
+    returnKeyType="send"
+    onSubmitEditing={() => formRef.current?.submitForm()}
+    />
 
     <Button
     onPress={() => formRef.current?.submitForm()}
