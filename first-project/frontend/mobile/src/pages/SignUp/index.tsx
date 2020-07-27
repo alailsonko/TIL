@@ -2,6 +2,7 @@ import React, { useRef, useCallback } from 'react';
 import * as Yup from 'yup'
 import getValidationErrors from '../../utils/getValidationErrors'
 import { useNavigation } from '@react-navigation/native'
+import api from '../../services/api'
 import { Form } from '@unform/mobile'
 import { FormHandles } from '@unform/core'
 import {
@@ -56,12 +57,11 @@ const SignUp: React.FC = () => {
         abortEarly: false,
       })
 
-      // await SignIn({
-      //   email: data.email,
-      //   password: data.password,
+      await api.post('/users', data)
 
-      // })
-      // history.push('/dashboard')
+      Alert.alert('Cadastro realizado com sucesso!', 'Você já pode fazer login.')
+
+     navigation.goBack()
      }catch(err){
            if(err instanceof Yup.ValidationError) {
              const errors = getValidationErrors(err)
@@ -77,7 +77,7 @@ const SignUp: React.FC = () => {
            )
      }
 
-  }, [])
+  }, [navigation])
 
   return (
     <>

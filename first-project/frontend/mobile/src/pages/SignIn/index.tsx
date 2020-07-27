@@ -1,5 +1,6 @@
 import React, { useCallback, useRef } from 'react';
 import { useNavigation } from '@react-navigation/native'
+import api from '../../services/api'
 import * as Yup from 'yup'
 import getValidationErrors from '../../utils/getValidationErrors'
 import { Form } from '@unform/mobile'
@@ -54,12 +55,8 @@ const SignIn: React.FC = () => {
         abortEarly: false,
       })
 
-      // await SignIn({
-      //   email: data.email,
-      //   password: data.password,
+      await api.post('/users', data);
 
-      // })
-      // history.push('/dashboard')
      }catch(err){
            if(err instanceof Yup.ValidationError) {
              const errors = getValidationErrors(err)
