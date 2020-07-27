@@ -53,3 +53,54 @@ var person: Person = {
     heightCM: 4343
 }
 person
+
+//Arrays
+
+//Typed arrays
+interface Monument {
+    name: string;
+    heightCM: number;
+}
+
+// the array is typed uding the monument interface
+var monumnets: Monument[] = [];
+
+//  Each item added to the array is checked for type compatibility
+monumnets.push({
+    name: 'statue of liberty',
+    heightCM: 46,
+    location: 'USA' // error: this value doe snot exist in type Monument
+})
+
+monumnets
+
+monumnets.push({
+    name: 'Peter the graet',
+    heightCM: 69
+})
+
+monumnets
+
+function compareMonumentHeights(a: Monument, b: Monument) {
+    if (a.heightCM > b.heightCM) {
+        return -1
+    }
+    if (a.heightCM < b.heightCM) {
+        return 1
+    }
+    return 0
+
+}
+// the array.sort method expects a comparer that accepets two Monuments
+var monumentsOrderedByHeight = monumnets.sort(compareMonumentHeights);
+
+// get the first element from the array, which is the tallest
+var tallestMonumento = monumentsOrderedByHeight[0]
+
+console.log(tallestMonumento.name)
+
+
+
+
+
+
