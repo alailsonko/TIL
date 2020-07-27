@@ -203,3 +203,5 @@ console.log(Size[size]);
 var size = Size.XL;
 ++size;
 console.log(Size[size]);
+
+// Binary Operators
