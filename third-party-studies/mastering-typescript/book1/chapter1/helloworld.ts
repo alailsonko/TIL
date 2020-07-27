@@ -40,3 +40,16 @@ person = {
     heightCM: 437
 }
 person
+
+// using an intrrface to simplify type annotations
+
+interface Person {
+    name: string;
+    heightCM: number;
+}
+
+var person: Person = {
+    name: 'some name',
+    heightCM: 4343
+}
+person
