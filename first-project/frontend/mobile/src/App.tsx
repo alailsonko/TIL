@@ -3,7 +3,7 @@ import 'react-native-gesture-handler'
 import React, { useState } from 'react'
 import { View, StatusBar } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
-
+import AppProvider from './hooks'
 import Routes from './routes'
 
 import * as Font from 'expo-font';
@@ -35,9 +35,12 @@ function App(): React.ReactNode {
     return (
         <NavigationContainer>
         <StatusBar barStyle="light-content" />
+        <AppProvider>
         <View style={{ backgroundColor: '#312e38', flex: 1 }}>
            <Routes />
         </View>
+        </AppProvider>
+
 
         </NavigationContainer>
     )

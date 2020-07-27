@@ -4,6 +4,7 @@ import api from '../../services/api'
 import * as Yup from 'yup'
 import getValidationErrors from '../../utils/getValidationErrors'
 import { Form } from '@unform/mobile'
+import { useAuth } from '../../hooks/auth'
 import { FormHandles } from '@unform/core'
 import {
   Image,
@@ -39,7 +40,7 @@ const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null)
   const passwordInputRef = useRef<TextInput>(null)
   const navigation = useNavigation();
-
+  const { signIn } = useAuth()
   const handleSignIn = useCallback(
     async (data: SignInFormData) => {
      try{
@@ -72,7 +73,7 @@ const SignIn: React.FC = () => {
            )
      }
 
-  }, [])
+  }, [signIn])
 
   return (
     <>
