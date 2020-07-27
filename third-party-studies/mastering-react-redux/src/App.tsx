@@ -1,11 +1,25 @@
 import React from 'react';
+import { increment, decrement } from './store/actions/counterActions'
+import { connect, useDispatch } from 'react-redux'
 
-function App() {
-  return (
-     <div>
-       <h2>hello world</h2>
-     </div>
-  );
+interface CounterProps {
+  counter: number;
 }
 
-export default App;
+function App({ counter }: CounterProps) {
+  const dispatch = useDispatch()
+
+  return (
+    <div>
+     <button onClick={() => dispatch(decrement())}>decrement</button>
+        <h2>{counter}</h2>
+     <button onClick={() => dispatch(increment())}>increment</button>
+    </div>
+  );
+}
+const mapStateToProps =(state: any) => {
+  return { counter: state.counter }
+}
+const mapDispatchToProps = { decrement, increment }
+
+export default connect( mapStateToProps, mapDispatchToProps)(App);
