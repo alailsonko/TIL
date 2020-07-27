@@ -5,29 +5,25 @@ import uploadConfig from '@config/upload';
 
 import UpdateUserAvatarService from '@modules/users/services/UpdateUserAvatarService';
 
-import ensureAuthentication from '@modules/users/infra/http/middlewares/ensureAuthentication';
+import ensureAuthentication from '../middlewares/ensureAuthentication';
 
 const usersRouter = Router();
 const upload = multer(uploadConfig);
 
 usersRouter.post('/', async (req, res) => {
-  try {
-    const { name, email, password } = req.body;
+  const { name, email, password } = req.body;
 
-    const createUser = new CreateUserService();
+  const createUser = new CreateUserService();
 
-    const user = await createUser.execute({
-      name,
-      email,
-      password,
-    });
+  const user = await createUser.execute({
+    name,
+    email,
+    password,
+  });
 
-    delete user.password;
+  delete user.password;
 
-    return res.json(user);
-  } catch (err) {
-    return res.json(400).json({ error: err.message });
-  }
+  return res.json(user);
 });
 
 usersRouter.patch(

@@ -31,30 +31,37 @@ const AuthProvider: React.FC = ({ children }) => {
   const [loading, setLoading ] = useState(true)
   useEffect(() => {
       async function loadStoragedData(): Promise<void> {
-        const [token, user] = await AsyncStorage.multiGet(
-          ['@GoBarber:token', '@GoBarber:user']
+        const [token, user] = await AsyncStorage.multiGet([
+          '@GoBarber:token', '@GoBarber:user'
+        ]
           )
 
-          if (user[1] && token[1]) {
+          if (token[1] && user[1]) {
+
+
             setData({ token: token[1], user: JSON.parse(user[1]) })
           }
           setLoading(false)
+
       }
+
 
       loadStoragedData()
   },[])
 
   const signIn = useCallback(async ({ email, password }) => {
 
-    const response = await api.post('sessions', {
+
+    const response = await api.post('/sessions', {
       email,
       password
     })
 
+
     const { token, user } = response.data;
 
   await AsyncStorage.multiSet([
-    ['@GoBarber:token', token], ['@GoBarber:user', JSON.stringify(user)]
+    ['@GoBarber:token', JSON.stringify(token)], ['@GoBarber:user', JSON.stringify(user)]
     ]);
 
     setData({ token, user })
@@ -69,7 +76,9 @@ const AuthProvider: React.FC = ({ children }) => {
    }, [])
 
    return (
+
      <AuthContext.Provider value={{ user: data.user, loading, signIn, signOut }}>
+
        {children}
      </AuthContext.Provider>
    )
