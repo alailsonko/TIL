@@ -141,6 +141,65 @@ hasS
 var hasC = (personally & DiscFlags.Conscientiousness) == DiscFlags.Conscientiousness
 hasC
 
+// type assertions
 
+interface House {
+    bedrooms: number;
+    bathrooms: number;
+}
 
+interface Mansion {
+    bedrooms: number;
+    bathrooms: number;
+    butlers: number;
+}
 
+var avenueRoad: House = {
+    bedrooms: 11,
+    bathrooms: 10,
+    butlers: 1 // error: type not assigned
+}
+
+// Errors: Cannot convert house to Mansion
+var mansion: Mansion = avenueRoad;
+mansion
+// Works
+var mansion: Mansion = <Mansion>avenueRoad;
+mansion
+
+// forced type assertions
+var nameN: string = 'Avenue Road'
+nameN
+// Error: Cannot convert 'string' to 'number'
+var bedrooms: number = <Number>nameN;
+bedrooms
+//Works 
+var bedrooms: number = <number> <any> nameN
+bedrooms
+
+var counter = 0;
+
+do {
+    ++counter;
+    counter
+} while (counter < 10)
+counter
+
+enum Size {
+    S,
+    M,
+    L,
+    XL
+}
+
+var size = Size.S;
+++size;
+console.log(Size[size]);
+
+var size = Size.XL;
+--size;
+console.log(Size[size]);
+
+var size = Size.XL;
+++size;
+console.log(Size[size]);
