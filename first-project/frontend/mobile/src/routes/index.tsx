@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {
   ActivityIndicator,
   View
@@ -7,10 +7,11 @@ import AuthRoutes from './auth.routes'
 import AppRoutes from './app.routes'
 
 
-import { useAuth } from '../hooks/auth'
+import { useAuth, AuthContext } from '../hooks/auth'
 
 const Routes: React.FC = () => {
   const { user, loading } = useAuth();
+   console.log(user);
 
   if (loading) {
     return (
@@ -22,10 +23,7 @@ const Routes: React.FC = () => {
 
   return (
     <>
-  {/* {   console.log(user)}
-  {   console.log(user)}
-  {   console.log(user)}
-  {   console.log(user)} */}
+
 
     { user ? <AppRoutes /> : <AuthRoutes />}
     </>

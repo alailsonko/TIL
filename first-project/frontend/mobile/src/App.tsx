@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { View, StatusBar } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import AppProvider from './hooks'
-import Routes from './routes/auth.routes'
+import Routes from './routes'
 
 import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
