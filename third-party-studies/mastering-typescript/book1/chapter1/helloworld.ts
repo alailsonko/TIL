@@ -100,6 +100,46 @@ var tallestMonumento = monumentsOrderedByHeight[0]
 console.log(tallestMonumento.name)
 
 
+//Enumerations
+
+enum VehicleType {
+    PedalCycle,
+    MotorCycle,
+    car,
+    Van,
+    Bus,
+    Lorry
+}
+
+var type = VehicleType.Lorry;
+var typeName = VehicleType[type]
+typeName
+
+//  Bit Flags
+
+enum DiscFlags {
+    None = 0,
+    Drive = 1,
+    Influence = 2,
+    Steadiness = 4,
+    Conscientiousness = 8
+}
+
+// Using flags
+var personally = DiscFlags.Drive | DiscFlags.Conscientiousness;
+// Testing flags
+//true
+var hasD = (personally & DiscFlags.Drive) == DiscFlags.Drive
+hasD
+
+var hasI = (personally & DiscFlags.Influence) == DiscFlags.Influence
+hasI
+
+var hasS = (personally & DiscFlags.Steadiness) == DiscFlags.Steadiness
+hasS
+
+var hasC = (personally & DiscFlags.Conscientiousness) == DiscFlags.Conscientiousness
+hasC
 
 
 
