@@ -451,3 +451,43 @@ var ScoleLosingExample = {
     }
 }
 ScoleLosingExample.run()
+
+// interfaces
+
+interface Point {
+    // Properties
+    x: number;
+    y: number;
+}
+
+interface Passenger {
+    // Properties
+    name: string;
+}
+
+interface Vehicle {
+    //constructor 
+    new() : Vehicle;
+    // Properties
+    currentLocation: Point;
+    // Methods 
+    travelTo(point: Point);
+    addPassenger(passenger: Passenger);
+    removePassenger(passenger: Passenger)
+}
+
+interface NodeList {
+    length: number;
+    item(index: number): Node;
+    [index: number]: Node;
+}
+
+interface NodeList {
+    onclick: (event: MouseEvent) => any;
+}
+
+var nodeList = document.getElementsByTagName('div');
+
+nodeList.onclick = function (event: MouseEvent) {
+    console.log('Clicked');
+}
