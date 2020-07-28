@@ -205,3 +205,249 @@ var size = Size.XL;
 console.log(Size[size]);
 
 // Binary Operators
+
+var num = 5 + 1
+num
+
+var str = 5 + '1'
+str
+
+// unary plus and minus operators
+
+var str: string = '5'
+str
+
+// 5: number
+var num = +str;
+num
+
+// -5: number
+var negative = -str;
+
+// Bitwise Operators
+
+/**
+ * & | ^ << >> <<< >>> ~
+ */
+
+// Logical Operators
+
+// NOT operator
+
+var truthyString = 'Truthy string'
+var falseyString: string;
+truthyString
+falseyString
+// false, it checks the string but inverts the truth
+var invertedTest = ! truthyString;
+invertedTest
+// true, the string is not undefined or empty
+var truthyStest = !! truthyString;
+truthyStest
+// false, the string is empty
+var falseyTest = !! falseyString
+falseyTest
+
+// shorthand boolean test
+
+var myProperty;
+
+if (myProperty) {
+   // Reaching this location means that...
+   // myProperty is not null
+   // myPropperty is not undefined
+   // myProperty is not boolean false
+   // myProperty is not an empty string
+   // myProperty is not the number 0
+   // myProperty is not NaN
+}
+
+// AND operator
+    // longhand
+if (console) {
+    console.log('Console available')
+}
+    // shorthand
+console && console.log('console available');
+
+var player1 = 'Martin'
+
+// player2 is only defined if player is defined
+var player2 = player1 && 'Dan'
+
+// 'Dan'
+console.log(player2);
+
+
+// OR operator
+
+// Empty string are falsey
+var errorMessages = '';
+
+// result is 'Saved OK'
+var result = errorMessages || 'Saved OK'
+result
+
+// filled string are truthy
+errorMessages = 'Error Detected'
+
+// result is 'Error Detected'
+result = errorMessages || 'Saved OK'
+result
+
+var undefinedLogger;
+
+// if the logger isn't initialized, 
+// subtitle it for the result of the right-hannd expression
+var logger = undefinedLogger || { log: function(msg: string ){ console.log(msg)}}
+
+logger.log('message')
+
+// short circuit evaluation
+interface Caravan {
+    rooms: number;
+}
+var caravan: Caravan;
+
+
+if (caravan && caravan.rooms > 5) {
+    //...
+}
+
+// Conditional Operator
+
+var isValid = true;
+
+// longhand equivalent
+if (isValid) {
+    message = 'Okay'
+} else {
+    message = 'Failed'
+}
+
+//Conditional operator
+var message = isValid ? 'Okay' : 'Failed'
+message
+
+// Functions
+
+  //  function type annotations
+
+  function getAverage1(a: number, b: number, c: number): string {
+      var total = a + b + c;
+      var average = total / 3;
+      return 'The average is ' + average
+  }
+
+var result1 = getAverage1(4, 3, 10)
+console.log(result1)
+
+
+// Optional Parameters
+
+function getAverage2(a: number, b: number, c?: number): string {
+    var total = a;
+    var count = 1;
+
+    total += b
+    count++
+
+    if ( typeof c != 'undefined') {
+        total +=c;
+        count++;
+    }
+
+    var average = total / count;
+    return 'The average is ' + average
+}
+
+var result2 = getAverage2(4, 6)
+result2
+
+
+// default parameters
+function concatenate(
+    items: string[], 
+    separator = ',', 
+    beginAt = 0, 
+    endAt = items.length 
+    ) {
+     var result = '';
+
+     for (var i = beginAt; i < endAt; i++) {
+         result += items[i];
+         if (i < (endAt - 1)) {
+             result += separator
+         }
+     }
+     return result
+}
+
+var items  = ['A', 'B', 'C'];
+
+// 'A,B,C'
+var result = concatenate(items)
+result
+// 'B-C'
+var partialResult = concatenate(items, '-', 1)
+partialResult
+
+// Rest Parameters
+
+function getAverage3(...a: number[]): string {
+    var total = 0;
+    var count = 0;
+
+    for (var i = 0; i < a.length; i++) {
+        total += a[i]
+        count++
+    }
+
+    var average = total / count;
+    return 'The average is ' + average
+}
+
+var result3 = getAverage3(2, 4, 6, 8, 10)
+result3
+
+// Overloads
+function getAverage4(a: string, b: string, c: string);
+function getAverage4(a: number, b: number, c: number);
+// implementation signature
+function getAverage4(a: any, b: any, c: any): string {
+    var total = parseInt(a, 10) + parseInt(b, 10) + parseInt(c, 10)
+    var average = total / 3
+    return 'the average is ' + average 
+}
+
+var result4 = getAverage4(4, 3, 8)
+
+result4
+
+// specialized overload signatures
+
+class HandlerFactory {
+    getHandler(type: 'Random'): RandomHandler;
+    getHandler(type: 'Reversed'): ReversedHandler;
+    getHandler(type: string): Handler; // non specialized signature
+    getHandler(type: string): Handler { //implementation signature
+       switch (type) {
+           case 'Random':
+               return new RandomHandler();
+           case 'Reversed':
+               return new ReversedHandler();
+            default:
+                return new Handler();
+       }
+    }
+}
+var ScoleLosingExample = {
+    text: "Property from lexical scope",
+    run: function () {
+        setTimeout(() => {
+            console.log(this.text);
+            
+        }, 5000)
+    }
+}
+ScoleLosingExample.run()
