@@ -3,7 +3,7 @@ import { shade } from 'polished';
 import signInBackgroundImg from '../../assets/sign-in-background.png';
 
 export const Container = styled.div`
-  width: 100vh;
+  height: 100vh;
   display: flex;
   align-items: stretch;
   align-items: center;
@@ -11,13 +11,14 @@ export const Container = styled.div`
 
 export const Content = styled.div`
   display: flex;
-  place-content: center;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
   width: 100%;
   max-width: 700px;
 
   form {
-    margin: 80px 0;
+    margin: 40px 0;
     width: 340px;
     text-align: center;
 
@@ -86,6 +87,8 @@ export const Content = styled.div`
 
 export const Background = styled.div`
   flex: 1;
+  width: 100%;
+  height: 100%;
   background: url(${signInBackgroundImg}) no-repeat center;
   background-size: cover;
 `;
