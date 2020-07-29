@@ -1,38 +1,24 @@
-let _id = 1;
-export function uniqueId(): number {
-  return _id++;
-}
+import { Task, CREATE_TASK, EDIT_TASK, TaskActionTypes, TaskPayload } from '../types'
 
-interface Task {
-  id: number;
-  title: string;
-  description: string;
-  status: string
-}
 
-interface TaskAction {
-  type: string;
-  payload: object;
-}
-
-export function createTask({ title, description }: Task): any {
+export function createTask({ title, description }: Task): TaskActionTypes {
   return (
-    type: 'CREATE_TASK',
+    type: typeof CREATE_TASK,
     payload: {
-      id: uniqueId(),
+      id: 1,
       title,
-      description,
+       description,
       status: 'Unstarted'
     }
   )
 }
 
-export function editTask(id, params = ()) {
-  return (
-    type: 'EDIT_TASK',
-    payload: {
-      id,
-      params
-    }
-  )
-}
+// export function editTask(id, params = ()) {
+//   return (
+//     type: 'EDIT_TASK',
+//     payload: {
+//       id,
+//       params
+//     }
+//   )
+// }

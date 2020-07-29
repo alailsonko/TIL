@@ -3,6 +3,13 @@ import TaskList from './TaskList'
 
 const TASK_STATUSES = ['Unstarted', 'In Progress', 'Completed']
 
+interface Task {
+
+  title: string;
+  description: string;
+
+}
+
 class TaskPage extends Component {
   state = {
     showNewCardForm: false,
