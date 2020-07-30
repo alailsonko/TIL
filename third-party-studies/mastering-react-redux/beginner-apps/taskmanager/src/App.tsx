@@ -1,29 +1,37 @@
 import React, { Component } from 'react';
 import TasksPage from './components/TasksPage'
+import { connect } from 'react-redux'
 
-const mockTasks = [
-  {
-    id: 1,
-    title: 'Learn Redux',
-    description: 'the store, actions, and reducers, oh my',
-    status: 'In Progress'
-  },
-  {
-    id: 2,
-    title: 'Peace On Earth',
-    description: 'No Big Deal',
-    status: 'In Progress'
-  }
-]
+interface ITask {
+  id: number;
+  title: string;
+  description: string;
+  status: string;
+}
 
-class App extends Component {
+interface IRepositoriesState {
+ readonly tasks: ITask[];
+}
 
+interface ApplicationState {
+ readonly tasks: ITask[];
+}
+
+interface OwnProps {
+
+}
+
+type Props = IRepositoriesState & OwnProps
+
+class App extends Component<Props> {
 
 
     render(){
+
+
       return (
         <div className="main-content" >
-          <TasksPage tasks={mockTasks} />
+          <TasksPage tasks={this.props.tasks} />
         </div>
       )
     }
@@ -31,6 +39,11 @@ class App extends Component {
 
 }
 
+const mapStateToProps = (state: ApplicationState) => {
+  return {
+     tasks: state.tasks
+  }
+}
 
 
-export default  App;
+export default connect(mapStateToProps)(App);

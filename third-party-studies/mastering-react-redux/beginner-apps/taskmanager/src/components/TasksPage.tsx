@@ -11,7 +11,7 @@ interface TaskProps {
 }
 
 interface Props {
-  tasks: TaskProps[];
+ readonly tasks: TaskProps[];
 }
 
 class TaskPage extends Component<Props> {
@@ -19,8 +19,14 @@ class TaskPage extends Component<Props> {
   renderTaskLists() {
     const { tasks } = this.props
 
+
+
     return TASK_STATUSES.map((status) => {
-      const statusTasks = tasks.filter((task) => task.status === status);
+      const statusTasks = tasks.filter((task) => {
+
+       return task.status === status});
+
+
       return <TaskList key={status} status={status} tasks={statusTasks} />
     })
   }

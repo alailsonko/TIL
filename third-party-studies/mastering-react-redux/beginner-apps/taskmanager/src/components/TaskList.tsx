@@ -10,8 +10,8 @@ interface TaskProps {
 
 
 interface Props {
-  status: string,
-  tasks: TaskProps[]
+readonly  status: string;
+readonly  tasks: TaskProps[];
 }
 
 const TaskList: React.FC<Props> = (props) => {
