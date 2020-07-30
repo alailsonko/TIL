@@ -1,21 +1,35 @@
 import React from 'react'
 import Task from './Task'
 
-const TaskList: React.FC = (props: object) => {
+interface TaskProps {
+  id: number;
+  title: string;
+  description: string;
+  status: string;
+}
+
+
+interface Props {
+  status: string,
+  tasks: TaskProps[]
+}
+
+const TaskList: React.FC<Props> = (props) => {
   return (
-   <div className="task-list">
-     <div className="task-list-title">
-  <strong>{props.status}</strong>
-     </div>
-     {props.tasks.map((task: object) => (
+    <div className="task-list">
+      <div className="task-list-title">
+        <strong>
+          {props.status}
+        </strong>
+      </div>
+      {props.tasks.map((task) => (
         <Task
-         key={task.id}
-         task={task}
-         onStatusChange={props.onStatusChange}
+        key={task.id}
+        task={task}
         />
-     ))}
-   </div>
+      ))}
+    </div>
   )
 }
 
-export default TaskList
+export default TaskList;

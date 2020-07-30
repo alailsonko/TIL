@@ -1,33 +1,28 @@
 import React from 'react'
 
-const TASK_STATUSES = [
-  "Unstarted",
-  "In Progress",
-  "Completed"
-]
+interface Props {
+  id: number;
+  title: string;
+  description: string;
+  status: string;
+}
 
-const Task: React.FC = (props) => {
-    return (
-    <div className="task">
+interface TaskProps {
+  task: Props;
+}
+
+const Task: React.FC<TaskProps> = ({ task }) => {
+  return (
+     <div className="task">
       <div className="task-header">
-    <div>{props.task.title}</div>
-    <select value={props.task.status}> onChange={onStatusChange}
-         {TASK_STATUSES.map((status) => (
-           <option value={status} key={status}>
-             {status}
-           </option>
-         ))}
-    </select>
+           <div>{task.title}</div>
       </div>
       <hr/>
       <div className="task-body">
-        {props.task.description}
+        {task.description}
       </div>
-    </div>
-    )
-    function onStatusChange (e) {
-      props.onStatusChange(props.task, e.target.value)
-    }
+     </div>
+  )
 }
 
-export default Task
+export default Task;

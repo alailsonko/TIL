@@ -1,31 +1,29 @@
 import React, { Component } from 'react';
-import TaskPage from './components/TaskPage'
-import { connect } from 'react-redux'
-import { createTask, editTask } from './actions/index'
+import TasksPage from './components/TasksPage'
 
-interface Task {
-  title: string;
-  description: string;
-}
+const mockTasks = [
+  {
+    id: 1,
+    title: 'Learn Redux',
+    description: 'the store, actions, and reducers, oh my',
+    status: 'In Progress'
+  },
+  {
+    id: 2,
+    title: 'Peace On Earth',
+    description: 'No Big Deal',
+    status: 'In Progress'
+  }
+]
 
 class App extends Component {
 
-   onCreateTask = ({title, description}: Task) => {
-     this.props.dispatch(createTask({ title, description }))
-  }
 
- onStatusChange = (id, status) => {
-    this.props.dispatch(editTask(id, {status}))
-  }
 
     render(){
       return (
-        <div className="main-content">
-            <TaskPage
-            tasks={this.props.tasks}
-            onCreateTask={this.onCreateTask}
-            onStatusChange={this.onStatusChange}
-            />
+        <div className="main-content" >
+          <TasksPage tasks={mockTasks} />
         </div>
       )
     }
@@ -34,10 +32,5 @@ class App extends Component {
 }
 
 
- const mapStateToProps = (state: any) => {
-  return (
-    tasks: state.tasks
-  )
-}
 
-export default connect(mapStateToProps, {createTask, editTask})(App);
+export default  App;
