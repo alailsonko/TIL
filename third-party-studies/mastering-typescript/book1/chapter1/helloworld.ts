@@ -486,8 +486,258 @@ interface NodeList {
     onclick: (event: MouseEvent) => any;
 }
 
-var nodeList = document.getElementsByTagName('div');
+// // var nodeList = document.getElementsByTagName('div');
 
-nodeList.onclick = function (event: MouseEvent) {
-    console.log('Clicked');
+// nodeList.onclick = function (event: MouseEvent) {
+//     console.log('Clicked');
+// }
+
+// Classes
+
+class Song {
+    constructor(private artist: string, private title: string) {
+            this.artist = artist
+            this.title = title
+    }
+
+    play() {
+        console.log('Playing' + this.title + ' by ' + this.artist);
+    }
 }
+
+class Jukebox {
+    constructor(private songs: Song[]) {
+    }
+    play(){
+        var song = this.getRandomSong();
+        song.play()
+    }
+
+    private getRandomSong() {
+        var songCount = this.songs.length;
+        var songIndex = Math.floor(Math.random() * songCount)
+
+        return this.songs[songIndex]
+    }
+}
+
+class Playlist {
+    private songs: Song[] = [];
+
+    static maxSongCount: number = 30;
+
+    constructor(public name: string) {
+    }
+
+    addSong(song: Song) {
+        if (this.songs.length >= Playlist.maxSongCount) {
+            throw new Error('Playlist is full')
+        }
+        this.songs.push(song)
+    }
+}
+
+var songs = [
+    new Song('Bushbaby', 'Megaphone'),
+    new Song('Delays', 'One more lie in'),
+    new Song('Goober Gun', 'Stereo'),
+    new Song('Sohnee', 'Shatter'),
+    new Song('Get Amped', 'Celebrity'),
+]
+
+var jukebox = new Jukebox(songs)
+
+jukebox.play()
+jukebox.play()
+jukebox.play()
+
+// creating a new instance 
+var playlist = new Playlist('My Playlist')
+
+// Acessing a public instance property
+var nameN = playlist.name;
+console.log(nameN);
+
+// calling a public instance method
+playlist.addSong(new Song('Therapy?', 'Crooked Timber'))
+
+// Acessing a public static property
+var maxSongs = Playlist.maxSongCount;
+
+console.log(maxSongs);
+
+// Property getters and setters
+
+interface StockItem {
+    description: string;
+    asin: string;
+}
+
+class WarehouseLocation {
+    private _stockItem;
+
+    constructor(public aisle: number, public slot: string) {
+
+    }
+
+    get stockItem() {
+        return this._stockItem
+    }
+    set stockItem(item: StockItem) {
+        this._stockItem = item
+    }
+}
+
+var figure = { asin: 'B001djia', description: 'Figure' }
+
+var warehouseSlot = new WarehouseLocation(15, 'A6')
+
+warehouseSlot.stockItem = figure
+
+interface Audio {
+    play(): any;
+}
+
+class Songs implements Audio {
+    constructor(private artist: string, private title: string) {
+    }
+    play(): void {
+        console.log('Playing' + this.title + ' by ' + this.artist);
+    }
+
+    static Comparer(a: Songs, b: Songs) {
+        if (a.title === b.title) {
+            return 0;
+        }
+        return a.title > b.title ? 1 : -1
+    }
+}
+
+class Playlistt {
+    constructor(public songs: Audio[]) {
+    }
+    Play() {
+        var song = this.songs.pop()
+        song.play()
+    }
+    sort() {
+        this.songs.sort(Songs.Comparer)
+    }
+}
+
+class RepeatingPlaylist extends Playlistt {
+    private songIndex = 0;
+    constructor(songs: Songs[]) {
+        super(songs);
+    }
+    play() {
+        this.songs[this.songIndex].play;
+
+        this.songIndex++
+
+        if (this.songIndex >= this.songs.length) {
+            this.songIndex = 0;
+        }
+    }
+}
+
+
+// Property and Arrow function
+
+class ClickCounter {
+    private count = 0;
+
+    registerClick = () => {
+        this.count++
+        console.log(this.count);
+        
+    }
+}
+
+// using the instanceof operator
+
+class Display {
+    name: string = '';
+}
+
+class Television extends Display {
+
+}
+
+class HiFi {
+
+}
+
+var display = new Display();
+var television = new Television();
+var hiFi = new HiFi()
+
+var isDisplay;
+
+//true
+isDisplay = display instanceof Display;
+console.log(isDisplay);
+
+// true (inherits from Display)
+isDisplay = television instanceof Display;
+console.log(isDisplay);
+
+// false
+isDisplay = hiFi instanceof Display;
+
+console.log(isDisplay);
+
+// the in property
+
+var hasName;
+
+//true
+hasName = 'name' in display;
+console.log(hasName);
+
+//false
+hasName = 'name' in television;
+console.log(hasName);
+
+//true
+hasName = 'name' in hiFi
+console.log(hasName);
+
+// uninitialized property
+
+class Displayy {
+    name: string;
+}
+
+var display = new Displayy();
+
+//false
+var hasName = 'name' in display;
+
+console.log(hasName);
+
+// Obtaining runtime types
+
+class Describer {
+    static getName(inputClass) {
+        // RegEx to get the class name
+        var funcNameRegex = /function (.{1,})\(/;
+
+        var results = (funcNameRegex).exec((<any> inputClass).constructor.toString())
+        
+        return (results && results.length > 1) ? results[1] : '';
+    }
+}
+
+var tv = new Television();
+var radio = new HiFi();
+
+var tvType = Describer.getName(tv); // Television
+var radioType = Describer.getName(radio); // HiFi
+
+console.log(tvType);
+console.log(radioType);
+
+
+
+
