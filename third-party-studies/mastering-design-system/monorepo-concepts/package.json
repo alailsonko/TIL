@@ -1,0 +1,23 @@
+{
+  "name": "monorepo-concepts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "private": "true",
+  "scripts": {
+    "test": "jest"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*",
+      "packages/shared/*"
+    ]
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^3.9.7",
+    "@monorepo-concepts/eslint-config": "*",
+    "jest": "^26.2.2",
+    "@types/jest": "26.0.8",
+    "ts-jest": "^26.1.4"
+  }
+}
