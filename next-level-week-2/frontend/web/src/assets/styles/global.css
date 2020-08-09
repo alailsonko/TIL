@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&family=Poppins&display=swap'); 
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&family=Poppins&display=swap');
 
 :root {
     --color-background: #F0F0F7;
@@ -19,7 +19,7 @@
     --color-button-text: #FFFFFF;
     --color-box-base: #FFFFFF;
     --color-box-footer: #FAFAFC;
-  
+
     font-size: 60%;
   }
 
@@ -45,6 +45,7 @@
 
   body, input, button, textarea {
     font: 500 1.6rem Poppins;
+    color: var(--color-text-base);
     /* font-family: 'Archivo', sans-serif; */
   }
 

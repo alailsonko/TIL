@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-duplicate-props */
 import React from 'react'
 
 import './styles.css'
@@ -9,7 +10,7 @@ function TeacherForm() {
   return (
     <div className="container" id="page-teacher-form">
       <PageHeader
-        title="Estes são os proffys disponiveis"
+        title="Que incrivel que você que dar aulas."
 
         />
     </div>
