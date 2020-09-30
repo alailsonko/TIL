@@ -1,6 +1,7 @@
 # module 2 - Fundamentals - Bootcamp Fullstack Developer🚀 - [IGTI](https://www.igti.com.br/)
 ## Projects 👾 
 - **practice-homework:** build an range input that change the RGB colors. [link of live project](https://alailsonko.github.io/TIL/IGTI-bootcamp-fullstack-developer/module-2/challenges/practice-work-module-1/)
+- **challenge:** build an filter  user and make the fetch of user from one external API [link of live project](https://alailsonko.github.io/TIL/IGTI-bootcamp-fullstack-developer/module-2/challenges/challenge-module-1/)
 
 ## Languages and Tools 🧰 ▶ 
 
