@@ -5,7 +5,12 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './data-binding.component.html',
   styleUrls: ['./data-binding.component.css']
 })
+
+
+
 export class DataBindingComponent implements OnInit {
+
+
 
   url: string = 'http://loiane.com'
 
@@ -18,6 +23,14 @@ export class DataBindingComponent implements OnInit {
   savedValue: any
 
   isMouseOver: boolean = false
+
+  nome: string = 'abc'
+
+  pessoa: any = {
+    nome: 'def',
+    idade: 17
+  }
+
 
   saveValue(value) {
     this.savedValue = value
@@ -45,6 +58,7 @@ export class DataBindingComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }
