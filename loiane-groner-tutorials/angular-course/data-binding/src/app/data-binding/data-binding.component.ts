@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-data-binding',
   templateUrl: './data-binding.component.html',
-  styleUrls: ['./data-binding.component.css']
+  styleUrls: ['./data-binding.component.css'],
+  // outputs: ['mudouValor']
 })
 
 
@@ -26,6 +27,7 @@ export class DataBindingComponent implements OnInit {
 
   nomeDoCurso: string = 'angular'
 
+  valorInicial: number = 15
 
 
   saveValue(value) {
@@ -49,6 +51,10 @@ export class DataBindingComponent implements OnInit {
 
   onMouseOverOut() {
     this.isMouseOver = !this.isMouseOver
+  }
+
+  onMudouValor(event) {
+    console.log(event.novoValor)
   }
 
   constructor() { }
