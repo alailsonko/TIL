@@ -1,5 +1,5 @@
 <section class="property-binding">
-  <article>
+  <!-- <article>
     <h3>Interpolation</h3>
     <p>rendered string with interpolation: {{ url }}</p>
     <p>Resultado de 1 + 1 é: {{ 1 + 1 }}</p>
@@ -10,5 +10,45 @@
     <h3>Property Binding</h3>
     <img src="{{ urlImage }}" alt="nature image">
     <img [src]="urlImage" alt="nature image">
+  </article> -->
+  <article>
+    <h3>Class and style binding</h3>
+    <div>
+      Selecione uma classe:
+      <select #classe (change)="0">
+        <option value="alert-success">success</option>
+        <option value="alert-info">info</option>
+        <option value="alert-warning">alert</option>
+        <option value="alert-danger">error</option>
+      </select>
+
+      <br><br>
+
+      <div class="alert {{ classe.value }}" role="alert">
+       text colorized conforms the value of combobox
+      </div>
+
+      <div class="alert" role="alert"
+         [class.alert-success]="classe.value == 'alert-success'"
+      >Success</div>
+      <div class="alert" role="alert"
+      [class.alert-info]="classe.value == 'alert-info'"
+
+      >Info</div>
+      <div class="alert" role="alert"
+         [class.alert-warning]="classe.value == 'alert-warning'"
+
+      >Alert</div>
+      <div class="alert" role="alert"
+         [class.alert-danger]="classe.value == 'alert-danger'"
+
+      >Error</div>
+
+      <div class="alert alert-danger" role="alert"
+      [style.display]="classe.value == 'alert-danger' ? 'block' : 'none'"
+      >
+        this text somente appear in case of error
+      </div>
+    </div>
   </article>
 </section>
