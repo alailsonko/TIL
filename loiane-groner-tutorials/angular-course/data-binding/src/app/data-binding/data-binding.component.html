@@ -11,7 +11,7 @@
     <img src="{{ urlImage }}" alt="nature image">
     <img [src]="urlImage" alt="nature image">
   </article> -->
-  <article>
+  <!-- <article>
     <h3>Class and style binding</h3>
     <div>
       Selecione uma classe:
@@ -50,5 +50,33 @@
         this text somente appear in case of error
       </div>
     </div>
-  </article>
+  </article> -->
+  <section class="event-binding">
+    <article>
+      <h3>Event binding</h3>
+      <div>
+      <button
+       (click)="clickedButton()"
+      class="btn btn-primary">Click Me</button>
+      <br> <br>
+      <input type="text" name="" id=""
+        (keyup)="onKeyUp($event)"
+        (keyup.enter)="saveValue(inputField.value)"
+        (blur)="saveValue($event.target.value)"
+         #inputField
+      >
+      <p>actual value: {{ actualValue }}</p>
+      <p>saved value: {{ savedValue }}</p>
+
+      <br>
+      <span
+       (mouseover)="onMouseOverOut()"
+       (mouseout)="onMouseOverOut()"
+       [class.highlight]="isMouseOver"
+      >
+        pass the mouse above me
+      </span>
+      </div>
+    </article>
+  </section>
 </section>
