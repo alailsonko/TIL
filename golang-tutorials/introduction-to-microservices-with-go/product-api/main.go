@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+
 	"log"
 	"microservices-with-go/data"
 	"microservices-with-go/handlers"
@@ -11,6 +12,7 @@ import (
 	"time"
 
 	"github.com/go-openapi/runtime/middleware"
+	"google.golang.org/grpc"
 
 	gohandlers "github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
@@ -23,6 +25,15 @@ func main() {
 
 	// create the handlers
 	ph := handlers.NewProducts(l, v)
+
+	conn, err := grpc.Dial("localhost:9092")
+
+	if err != nil {
+		panic(err)
+	}
+	defer conn.Close()
+	// create the handlers
+	cc := protos.NewCurrencyClient(conn)
 
 	// create a new serve mux and register the handlers
 	sm := mux.NewRouter()

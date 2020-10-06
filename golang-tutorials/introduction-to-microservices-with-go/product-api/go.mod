@@ -27,5 +27,6 @@ require (
 	go.mongodb.org/mongo-driver v1.4.1 // indirect
 	golang.org/x/net v0.0.0-20201002202402-0a1ea396d57c // indirect
 	golang.org/x/tools v0.0.0-20201002184944-ecd9fd270d5d // indirect
+	google.golang.org/grpc v1.28.0
 	gopkg.in/ini.v1 v1.61.0 // indirect
 )

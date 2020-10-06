@@ -1,6 +1,8 @@
 package main
 
 import (
+	protos "currency/protos/currency"
+	"currency/server"
 	"fmt"
 	"net"
 	"os"
@@ -32,7 +34,8 @@ func main() {
 		log.Error("Unable to create listener", "error", err)
 		os.Exit(1)
 	}
-
+	log.Info("server listening at port 9092")
+	// fmt.Println("Server listening at port 9092")
 	// listen for requests
 	gs.Serve(l)
 }
