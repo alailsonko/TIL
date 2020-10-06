@@ -6,12 +6,12 @@ package products
 // Editing this file might prove futile when you re-run the swagger generate command
 
 import (
+	"building-microservices/product-api/sdk/models"
 	"fmt"
 	"io"
 
 	"github.com/go-openapi/runtime"
 	"github.com/go-openapi/strfmt"
-
 )
 
 // UpdateProductReader is a Reader for the UpdateProduct structure.
