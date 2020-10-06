@@ -1,12 +1,13 @@
 package main
 
 import (
+	"building-microservices/product-images/files"
+	"building-microservices/product-images/handlers"
 	"context"
 	"net/http"
 	"os"
 	"os/signal"
-	"product-images/files"
-	"product-images/handlers"
+
 	"time"
 
 	gohandlers "github.com/gorilla/handlers"

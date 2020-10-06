@@ -1,11 +1,12 @@
 package main
 
 import (
+	protos "building-microservices/currency/protos/currency"
+	"building-microservices/product-api/data"
+	"building-microservices/product-api/handlers"
 	"context"
 
 	"log"
-	"microservices-with-go/data"
-	"microservices-with-go/handlers"
 	"net/http"
 	"os"
 	"os/signal"
@@ -34,6 +35,8 @@ func main() {
 	defer conn.Close()
 	// create the handlers
 	cc := protos.NewCurrencyClient(conn)
+
+	ph := handlers.NewProducts(l, v, cc)
 
 	// create a new serve mux and register the handlers
 	sm := mux.NewRouter()

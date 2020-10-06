@@ -1,8 +1,6 @@
 package main
 
 import (
-	protos "currency/protos/currency"
-	"currency/server"
 	"fmt"
 	"net"
 	"os"

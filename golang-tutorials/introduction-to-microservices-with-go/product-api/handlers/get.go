@@ -1,8 +1,9 @@
 package handlers
 
 import (
-	"microservices-with-go/data"
+	"context"
 	"net/http"
+
 )
 
 // swagger:route GET /products products listProducts
@@ -58,6 +59,14 @@ func (p *Products) ListSingle(rw http.ResponseWriter, r *http.Request) {
 		data.ToJSON(&GenericError{Message: err.Error()}, rw)
 		return
 	}
+
+	// get exchange rate
+	rr := &protos.RateRequest{
+		Base:        protos.Currencies(protos.Currencies_value["EUR"]),
+		Destination: protos.Currencies(protos.Currencies_value["GBP"]),
+	}
+
+	p.cc.GetRate(context.Background(), rr)
 
 	err = data.ToJSON(prod, rw)
 	if err != nil {

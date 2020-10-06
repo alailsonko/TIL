@@ -1,10 +1,10 @@
 package handlers
 
 import (
+	"building-microservices/product-images/files"
 	"io"
 	"net/http"
 	"path/filepath"
-	"product-images/files"
 	"strconv"
 
 	"github.com/gorilla/mux"

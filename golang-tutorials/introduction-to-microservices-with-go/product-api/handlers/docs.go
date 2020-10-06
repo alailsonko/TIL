@@ -15,7 +15,6 @@
 package handlers
 
 import (
-	"microservices-with-go/data"
 )
 
 // generic error message returned as a string

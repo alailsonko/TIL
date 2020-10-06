@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"microservices-with-go/data"
 	"net/http"
 )
 
