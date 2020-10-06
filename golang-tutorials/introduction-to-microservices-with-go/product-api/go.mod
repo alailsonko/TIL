@@ -12,7 +12,7 @@ require (
 	github.com/go-openapi/validate v0.19.11
 	github.com/go-playground/validator/v10 v10.4.0
 	github.com/go-swagger/go-swagger v0.25.0 // indirect
-	github.com/gorilla/handlers v1.5.1 // indirect
+	github.com/gorilla/handlers v1.5.1
 	github.com/gorilla/mux v1.8.0
 	github.com/kr/pretty v0.2.1 // indirect
 	github.com/magiconair/properties v1.8.4 // indirect
