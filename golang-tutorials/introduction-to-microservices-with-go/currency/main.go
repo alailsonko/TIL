@@ -1,6 +1,8 @@
 package main
 
 import (
+	protos "building-microservices/currency/protos/currency"
+	"building-microservices/currency/server"
 	"fmt"
 	"net"
 	"os"

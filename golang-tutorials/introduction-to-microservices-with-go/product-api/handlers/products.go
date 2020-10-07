@@ -1,11 +1,12 @@
 package handlers
 
 import (
+	protos "building-microservices/currency/protos/currency"
+	"building-microservices/product-api/data"
 	"fmt"
 	"log"
 	"net/http"
 	"strconv"
-
 
 	"github.com/gorilla/mux"
 )

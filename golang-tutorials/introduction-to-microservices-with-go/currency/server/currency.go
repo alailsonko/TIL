@@ -1,6 +1,8 @@
 package server
 
 import (
+	"building-microservices/currency/data"
+	protos "building-microservices/currency/protos/currency"
 	"context"
 
 	"github.com/hashicorp/go-hclog"
@@ -8,12 +10,13 @@ import (
 
 // Currency is a gRPC server it implements the methods defined by the CurrencyServer interface
 type Currency struct {
-	log hclog.Logger
+	rates *data.ExchangeRates
+	log   hclog.Logger
 }
 
 // NewCurrency creates a new Currency server
-func NewCurrency(l hclog.Logger) *Currency {
-	return &Currency{l}
+func NewCurrency(r *data.ExchangeRates, l hclog.Logger) *Currency {
+	return &Currency{r, l}
 }
 
 // GetRate implements the CurrencyServer GetRate method and returns the currency exchange rate

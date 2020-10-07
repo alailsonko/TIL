@@ -1,4 +1,4 @@
-// Package classification Product API.
+// Package handlers Product API.
 //
 // Documentation for Product API
 //
@@ -14,8 +14,7 @@
 // swagger:meta
 package handlers
 
-import (
-)
+import "building-microservices/product-api/data"
 
 // generic error message returned as a string
 // swagger:response errorResponse

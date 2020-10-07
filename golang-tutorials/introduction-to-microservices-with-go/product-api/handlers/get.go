@@ -1,9 +1,10 @@
 package handlers
 
 import (
+	protos "building-microservices/currency/protos/currency"
+	"building-microservices/product-api/data"
 	"context"
 	"net/http"
-
 )
 
 // swagger:route GET /products products listProducts
@@ -34,7 +35,6 @@ func (p *Products) ListAll(rw http.ResponseWriter, r *http.Request) {
 
 // ListSingle handles GET requests
 func (p *Products) ListSingle(rw http.ResponseWriter, r *http.Request) {
-
 	rw.Header().Add("Content-Type", "application/json")
 
 	id := getProductID(r)
@@ -66,7 +66,16 @@ func (p *Products) ListSingle(rw http.ResponseWriter, r *http.Request) {
 		Destination: protos.Currencies(protos.Currencies_value["GBP"]),
 	}
 
-	p.cc.GetRate(context.Background(), rr)
+	resp, err := p.cc.GetRate(context.Background(), rr)
+	if err != nil {
+		p.l.Println("[Error] error getting new rate", err)
+		data.ToJSON(&GenericError{Message: err.Error()}, rw)
+		return
+	}
+
+	p.l.Printf("Resp %#v", resp)
+
+	prod.Price = prod.Price * resp.Rate
 
 	err = data.ToJSON(prod, rw)
 	if err != nil {
