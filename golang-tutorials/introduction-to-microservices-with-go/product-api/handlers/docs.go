@@ -1,22 +1,27 @@
-// Package handlers Product API.
+// Package classification of Product API
 //
 // Documentation for Product API
 //
-// Schemes: http
-// BasePath: /
-// Version: 2.0.0
+//	Schemes: http
+//	BasePath: /
+//	Version: 1.0.0
 //
-// Consumes:
-// - application/json
+//	Consumes:
+//	- application/json
 //
-// Produces:
-// - application/json
+//	Produces:
+//	- application/json
+//
 // swagger:meta
 package handlers
 
 import "building-microservices/product-api/data"
 
-// generic error message returned as a string
+//
+// NOTE: Types defined here are purely for documentation purposes
+// these types are not used by any of the handers
+
+// Generic error message returned as a string
 // swagger:response errorResponse
 type errorResponseWrapper struct {
 	// Description of the error
@@ -40,7 +45,7 @@ type productsResponseWrapper struct {
 	Body []data.Product
 }
 
-// Data Structure representing a single product
+// Data structure representing a single product
 // swagger:response productResponse
 type productResponseWrapper struct {
 	// Newly created product
@@ -48,18 +53,27 @@ type productResponseWrapper struct {
 	Body data.Product
 }
 
-// No Content is returned by this API endpoint
+// No content is returned by this API endpoint
 // swagger:response noContentResponse
 type noContentResponseWrapper struct {
 }
 
 // swagger:parameters updateProduct createProduct
 type productParamsWrapper struct {
-	// Product data structure to Update or Create
+	// Product data structure to Update or Create.
 	// Note: the id field is ignored by update and create operations
 	// in: body
 	// required: true
 	Body data.Product
+}
+
+// swagger:parameters listProducts listSingleProduct
+type productQueryParam struct {
+	// Currency used when returning the price of the product,
+	// when not specified currency is returned in GBP.
+	// in: query
+	// required: false
+	Currency string
 }
 
 // swagger:parameters listSingleProduct deleteProduct

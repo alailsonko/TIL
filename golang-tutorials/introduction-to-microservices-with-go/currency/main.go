@@ -1,7 +1,7 @@
 package main
 
 import (
-	protos "building-microservices/currency/protos/currency"
+	"building-microservices/currency/data"
 	"building-microservices/currency/server"
 	"fmt"
 	"net"
@@ -15,11 +15,17 @@ import (
 func main() {
 	log := hclog.Default()
 
+	rates, err := data.NewRates(log)
+	if err != nil {
+		log.Error("Unable to generate rates", "error", err)
+		os.Exit(1)
+	}
+
 	// create a new gRPC server, use WithInsecure to allow http connections
 	gs := grpc.NewServer()
 
 	// create an instance of the Currency server
-	c := server.NewCurrency(log)
+	c := server.NewCurrency(rates, log)
 
 	// register the currency server
 	protos.RegisterCurrencyServer(gs, c)
@@ -34,8 +40,7 @@ func main() {
 		log.Error("Unable to create listener", "error", err)
 		os.Exit(1)
 	}
-	log.Info("server listening at port 9092")
-	// fmt.Println("Server listening at port 9092")
+
 	// listen for requests
 	gs.Serve(l)
 }

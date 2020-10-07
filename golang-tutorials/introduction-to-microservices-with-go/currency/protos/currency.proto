@@ -5,12 +5,12 @@ service Currency {
 }
 
 message RateRequest {
-    string Base = 1 [json_name = "base"];
-    string Destination = 2 [json_name = "destination"];
+    Currencies Base = 1;
+    Currencies Destination = 2;
 }
 
 message RateResponse {
-    float Rate = 1;
+    double rate = 1;
 }
 
 

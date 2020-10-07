@@ -2,7 +2,6 @@ package server
 
 import (
 	"building-microservices/currency/data"
-	protos "building-microservices/currency/protos/currency"
 	"context"
 
 	"github.com/hashicorp/go-hclog"
@@ -23,5 +22,11 @@ func NewCurrency(r *data.ExchangeRates, l hclog.Logger) *Currency {
 // for the two given currencies.
 func (c *Currency) GetRate(ctx context.Context, rr *protos.RateRequest) (*protos.RateResponse, error) {
 	c.log.Info("Handle request for GetRate", "base", rr.GetBase(), "dest", rr.GetDestination())
-	return &protos.RateResponse{Rate: 0.5}, nil
+
+	rate, err := c.rates.GetRate(rr.GetBase().String(), rr.GetDestination().String())
+	if err != nil {
+		return nil, err
+	}
+
+	return &protos.RateResponse{Rate: rate}, nil
 }

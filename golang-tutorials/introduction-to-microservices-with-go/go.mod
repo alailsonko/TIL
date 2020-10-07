@@ -3,6 +3,7 @@ module building-microservices
 go 1.15
 
 require (
+	github.com/PacktPublishing/Building-Microservices-with-Go-Second-Edition/product-api v0.0.0-20200205074745-5ec21a886558
 	github.com/asaskevich/govalidator v0.0.0-20200907205600-7a23bdc65eef // indirect
 	github.com/fullstorydev/grpcurl v1.7.0 // indirect
 	github.com/go-openapi/errors v0.19.7

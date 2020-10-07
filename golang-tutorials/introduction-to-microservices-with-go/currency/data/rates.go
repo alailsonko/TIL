@@ -24,7 +24,7 @@ func NewRates(l hclog.Logger) (*ExchangeRates, error) {
 	return er, err
 }
 
-func (e *ExchangeRates) GetRates(base, dest string) (float64, error) {
+func (e *ExchangeRates) GetRate(base, dest string) (float64, error) {
 	br, ok := e.rates[base]
 	if !ok {
 		return 0, fmt.Errorf("Rate not found for currency %s", base)

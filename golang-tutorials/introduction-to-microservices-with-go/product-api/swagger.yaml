@@ -3,16 +3,16 @@ consumes:
 - application/json
 definitions:
   GenericError:
-    description: GenericError GenericError GenericError GenericError is a generic error message returned by a server
+    description: GenericError GenericError GenericError GenericError GenericError is a generic error message returned by a server
     properties:
       message:
         description: message
         type: string
         x-go-name: Message
     type: object
-    x-go-package: microservices-with-go/sdk/models
+    x-go-package: building-microservices/product-api/sdk/models
   Product:
-    description: Product Product defines the structure for an API product
+    description: Product Product Product defines the structure for an API product
     properties:
       description:
         description: the name for this product
@@ -38,17 +38,18 @@ definitions:
         x-go-name: Price
       sku:
         description: the sku for this product
+        pattern: '[a-z]+-[a-z]+-[a-z]+'
         type: string
         x-go-name: SKU
     required:
     - name
-    - description
     - price
     - sku
+    - description
     type: object
-    x-go-package: microservices-with-go/sdk/models
+    x-go-package: building-microservices/product-api/sdk/models
   ValidationError:
-    description: ValidationError ValidationError ValidationError ValidationError is a collection of validation error messages
+    description: ValidationError ValidationError ValidationError ValidationError ValidationError is a collection of validation error messages
     properties:
       messages:
         description: messages
@@ -57,16 +58,23 @@ definitions:
         type: array
         x-go-name: Messages
     type: object
-    x-go-package: microservices-with-go/sdk/models
+    x-go-package: building-microservices/product-api/sdk/models
 info:
   description: Documentation for Product API
-  title: Product API.
-  version: 2.0.0
+  title: of Product API
+  version: 1.0.0
 paths:
   /products:
     get:
       description: Return a list of products from the database
       operationId: listProducts
+      parameters:
+      - description: |-
+          Currency used when returning the price of the product,
+          when not specified currency is returned in GBP.
+        in: query
+        name: Currency
+        type: string
       responses:
         "200":
           $ref: '#/responses/productsResponse'
@@ -77,7 +85,7 @@ paths:
       operationId: createProduct
       parameters:
       - description: |-
-          Product data structure to Update or Create
+          Product data structure to Update or Create.
           Note: the id field is ignored by update and create operations
         in: body
         name: Body
@@ -98,7 +106,7 @@ paths:
       operationId: updateProduct
       parameters:
       - description: |-
-          Product data structure to Update or Create
+          Product data structure to Update or Create.
           Note: the id field is ignored by update and create operations
         in: body
         name: Body
@@ -139,6 +147,12 @@ paths:
       description: Return a list of products from the database
       operationId: listSingleProduct
       parameters:
+      - description: |-
+          Currency used when returning the price of the product,
+          when not specified currency is returned in GBP.
+        in: query
+        name: Currency
+        type: string
       - description: The id of the product for which the operation relates
         format: int64
         in: path
@@ -157,7 +171,7 @@ produces:
 - application/json
 responses:
   errorResponse:
-    description: generic error message returned as a string
+    description: Generic error message returned as a string
     schema:
       $ref: '#/definitions/GenericError'
   errorValidation:
@@ -165,9 +179,9 @@ responses:
     schema:
       $ref: '#/definitions/ValidationError'
   noContentResponse:
-    description: No Content is returned by this API endpoint
+    description: No content is returned by this API endpoint
   productResponse:
-    description: Data Structure representing a single product
+    description: Data structure representing a single product
     schema:
       $ref: '#/definitions/Product'
   productsResponse:
