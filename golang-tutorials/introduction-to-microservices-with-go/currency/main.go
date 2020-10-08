@@ -2,6 +2,7 @@ package main
 
 import (
 	"building-microservices/currency/data"
+	protos "building-microservices/currency/protos/currency"
 	"building-microservices/currency/server"
 	"fmt"
 	"net"
@@ -14,7 +15,7 @@ import (
 
 func main() {
 	log := hclog.Default()
-
+	log.Info("Server listening on port 9092")
 	rates, err := data.NewRates(log)
 	if err != nil {
 		log.Error("Unable to generate rates", "error", err)

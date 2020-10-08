@@ -432,8 +432,11 @@ github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd/go.mod h1:6dJ
 github.com/modern-go/reflect2 v1.0.1/go.mod h1:bx2lNnkwVCuqBIxFjflWJWanXIb3RllmbCylyMrvgv0=
 github.com/montanaflynn/stats v0.0.0-20171201202039-1bf9dbcd8cbe/go.mod h1:wL8QJuTMNUDYhXwkmfOly8iTdp5TEcJFWZD2D7SIkUc=
 github.com/mwitkow/go-conntrack v0.0.0-20161129095857-cc309e4a2223/go.mod h1:qRWi+5nqEBWmkhHvq77mSJWrCKwh8bxhgT7d/eI7P4U=
+github.com/nicholasjackson/building-microservices-youtube v0.0.0-20200918064506-0260dd0e3676 h1:kdEA3PaQgOs3AFJM6P+KWoeLOKlnRXHU312an+zrEl0=
 github.com/nicholasjackson/building-microservices-youtube/currency v0.0.0-20200329100342-3c14bf3f378d h1:0F85c5MGqvZCsQfbmaEuKt0Hi9vpkkmg2YJpLd1qOko=
 github.com/nicholasjackson/building-microservices-youtube/currency v0.0.0-20200329100342-3c14bf3f378d/go.mod h1:DMFXi7lJmSY5a/6uxjtI6E/dHCXvNfiNLcX6y9yfiSQ=
+github.com/nicholasjackson/building-microservices-youtube/currency v0.0.0-20200918064506-0260dd0e3676 h1:sd7xiwYBribCIa5lDx4NtOdHqrmPlSC+Fdmy4kUKLmk=
+github.com/nicholasjackson/building-microservices-youtube/currency v0.0.0-20200918064506-0260dd0e3676/go.mod h1:NTmTkun7znUZoUgHvDz69d60R/QCc/l8rEwbJJuk9Hs=
 github.com/nicholasjackson/building-microservices-youtube/product-api v0.0.0-20200918064506-0260dd0e3676 h1:DCWoYFK3kQG/aknszKPBN2TkfNHp0FAYusr85jOy0+Q=
 github.com/nicholasjackson/building-microservices-youtube/product-api v0.0.0-20200918064506-0260dd0e3676/go.mod h1:cp0dXe7uCsAyA1rSRfWo0nOcKyO/HSkwDpwn6yNbDdw=
 github.com/nicholasjackson/env v0.6.0 h1:6xdio52m7cKRtgZPER6NFeBZxicR88rx5a+5Jl4/qus=

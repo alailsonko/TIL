@@ -22,7 +22,7 @@ require (
 	github.com/magiconair/properties v1.8.4 // indirect
 	github.com/mailru/easyjson v0.7.6 // indirect
 	github.com/mitchellh/mapstructure v1.3.3 // indirect
-	github.com/nicholasjackson/building-microservices-youtube/currency v0.0.0-20200329100342-3c14bf3f378d
+	github.com/nicholasjackson/building-microservices-youtube/currency v0.0.0-20200918064506-0260dd0e3676
 	github.com/nicholasjackson/building-microservices-youtube/product-api v0.0.0-20200918064506-0260dd0e3676
 	github.com/nicholasjackson/env v0.6.0
 	github.com/pelletier/go-toml v1.8.1 // indirect
