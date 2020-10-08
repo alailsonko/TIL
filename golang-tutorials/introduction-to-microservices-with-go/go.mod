@@ -33,6 +33,7 @@ require (
 	golang.org/x/net v0.0.0-20201002202402-0a1ea396d57c // indirect
 	golang.org/x/tools v0.0.0-20201002184944-ecd9fd270d5d // indirect
 	golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1
+	google.golang.org/genproto v0.0.0-20200526211855-cb27e3aa2013
 	google.golang.org/grpc v1.32.0
 	gopkg.in/ini.v1 v1.61.0 // indirect
 )
