@@ -18,7 +18,6 @@ describe('App component', () => {
     //  expect(screen.getByText('Search:')).toBeInTheDocument();
     //  // success
     //  expect(screen.getByText(/Search/)).toBeInTheDocument();
-   
     expect(screen.getByRole('textbox')).toBeInTheDocument();
   });  
 });
