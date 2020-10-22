@@ -1,9 +1,9 @@
 import React from 'react';
-import { render, RenderOptions, RenderResult } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { AppProvider } from './AppContext'
+import { render, RenderOptions, RenderResult } from '@testing-library/react'
 
-const Wrapper: React.FC = ({ children }) => {
+const WrapperComponent: React.ComponentType = ({ children }) => {
 return (
     <AppProvider>
         <MemoryRouter>{children}</MemoryRouter>
@@ -11,10 +11,11 @@ return (
    )
 }
 
-const customRender: RenderResult = (ui: any, options: React.ComponentType) => render(ui, { wrapper: Wrapper, ...options})
-
+export const Render: RenderResult = (ui: React.ReactElement, options: RenderOptions) => render(ui, { wrapper: WrapperComponent, ...options})
 
 // re-export everything
 export * from "@testing-library/react"
 
-export { customRender as render }
+// export { customRender as Render }
+
+ 

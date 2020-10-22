@@ -16,9 +16,9 @@ interface ActionTypes {
     todo: { id: number }
 }
 
-export const AppContext = React.createContext<{appData: InitialStateTypes, appDispatch: React.Dispatch<any>;}>({
+export const AppContext = React.createContext<any>({
     appData: initialState,
-    appDispatch: () => null
+    appDispatch: {}
 });
 
 
