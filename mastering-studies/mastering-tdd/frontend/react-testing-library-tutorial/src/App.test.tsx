@@ -1,7 +1,7 @@
 import React from 'react';
 import { Render } from './custom-render';
 import App from './App';
-import { screen, waitForElementToBeRemoved } from '@testing-library/react'
+import { screen, waitForElementToBeRemoved, render } from '@testing-library/react'
 
 
 describe('<App />', () => {

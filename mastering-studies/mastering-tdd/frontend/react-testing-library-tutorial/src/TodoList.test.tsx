@@ -1,8 +1,9 @@
 import React from 'react';
 import axios from 'axios';
-import { Render, screen, waitForElementToBeRemoved } from './custom-render'
+import { render, screen, waitForElementToBeRemoved } from '@testing-library/react'
 import TodoList from './TodoList'
 import { todos } from './makeTodos'
+import { Render } from './custom-render'
 
 describe('<App />', () => {
     it('Renders <TodoList /> component', async () => {

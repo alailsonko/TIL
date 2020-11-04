@@ -1,12 +1,15 @@
 import React from 'react'
 import axios from 'axios'
-import { Render, screen, waitForElementToBeRemoved } from './custom-render'
+import { render, screen, waitForElementToBeRemoved } from '@testing-library/react'
 import { useParams, MemoryRouter } from 'react-router-dom'
 import TodoItem from './TodoItem'
-
+import { Render }  from './custom-render'
+const mock = {...jest.requireActual("react-router-dom"),
+    useParams: jest.fn(),}
 describe('<TodoItem />', () => {
+
     it("Renders <TodoItem /> correctly for a completed item", async () => {
-        useParams.mockReturnValue({ id: 1 });
+        jest.fn(useParams).mockReturnValue({ id: 1 });
         Render(<TodoItem />);
     
         await waitForElementToBeRemoved(() =>

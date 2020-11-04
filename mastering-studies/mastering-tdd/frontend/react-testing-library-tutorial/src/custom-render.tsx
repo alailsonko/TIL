@@ -11,7 +11,8 @@ return (
    )
 }
 
-export const Render: RenderResult = (ui: React.ReactElement, options: RenderOptions) => render(ui, { wrapper: WrapperComponent, ...options})
+export const Render = (ui: any, options?: RenderOptions ) => 
+        render(ui, { wrapper: WrapperComponent, ...options })
 
 // re-export everything
 export * from "@testing-library/react"
