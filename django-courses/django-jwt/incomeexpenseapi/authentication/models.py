@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import (
-    AbstractUser,
+    AbstractBaseUser,
     BaseUserManager,
     PermissionsMixin
 )
@@ -19,6 +19,8 @@ class UserManager(BaseUserManager):
         )
         user.set_password(password)
         user.save()    
+        return user
+        
     def create_superuser(self, username, email, password=None):
 
         if password is None:
