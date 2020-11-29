@@ -1,41 +1,21 @@
-// package main
+package main
 
-// import (
-// 	"fmt"
-// )
+import (
+	"fmt"
+	"math"
+)
 
-// // const (
-// // 	a = iota
-// // 	b = iota
-// // 	c = iota
-// // )
+const s string = "constant"
 
-// // const (
-// // 	a2 = iota
-// // )
+func main() {
+	fmt.Println(s)
 
-// const (
-// 	_  = iota
-// 	KB = 1 << (10 * iota)
-// 	MB
-// 	GB
-// 	TB
-// 	PB
-// 	EB
-// 	ZB
-// 	YB
-// )
+	const n = 5000000000
 
-// func main() {
+	const d = 3e20 / n
+	fmt.Println(d)
 
-// 	fileSize := 4000000000
-// 	// var specialistType int
-// 	fmt.Printf("%v.2fGB", fileSize/GB)
+	fmt.Println(int64(d))
 
-// 	// const a = 42
-// 	// var b int16 = 27
-// 	// fmt.Printf("%v, %T\n", a, a)
-// 	// fmt.Printf("%v, %T\n", b, b)
-// 	// fmt.Printf("%v, %T\n", c, c)
-// 	// fmt.Printf("%v, %T\n", a2, a2)
-// }
+	fmt.Println(math.Sin(n))
+}
