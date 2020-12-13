@@ -25,7 +25,7 @@ func square(n int) string {
 		for j := 0; j < n; j++ {
 			array = append(array, "* ")
 		}
-		array = append(array, "\n")
+		array[n] = "\n"
 		squareArray = append(squareArray, array...)
 	}
 	myString := strings.Join(squareArray, "")
