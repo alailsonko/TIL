@@ -155,16 +155,166 @@ int main()
 
 6. Suppose A has been declared to be an IntegerPointer variable. What is wrong with the assignment A = 5; for assigning 5 to be the value of A's referent?
 
+* Answer: Converting one datatype into another is known as type castingor, type-conversion. For example, if you want to store a 'long' value into a simple integer then you can type cast 'long' to 'int'. You can convert the values from one type to another explicitly using the cast operator as follows '(type_name) expressiob'. assigning A without *(asterisk) makes a casting error, a error of type.
+
+```C
+#include <stdlib.h>
+#include <stdio.h>
+
+int main()
+{
+  typedef int *IntegerPointer;
+
+  IntegerPointer A;
+  A = (IntegerPointer) malloc(sizeof(int));
+
+  A = 5; // occur casting error
+  printf("A = %d\n", *A);
+}
+```
+
+***********
 7. What are aliases? 
 
-8. How do you recycle dynamically allocated storage when it is no longer needed so that its space can be reused to meet further storage allocation needs?   
+* Answer: Identical pointer values, pointing to the same (shared) storage location. A's referent, *A, and B's referent, *B, "name" the same storage location, they are called aliases. In general, aliases are two different naming expressions that name the same thing.
 
+```C
+#include <stdlib.h>
+#include <stdio.h>
+
+int main()
+{
+  typedef int *IntegerPointer;
+
+  IntegerPointer A, B;
+  A = (IntegerPointer) malloc(sizeof(int));
+  B = (IntegerPointer) malloc(sizeof(int));
+
+   // A and B referent are aliases share the 
+   // same storage location
+  *A = 19;
+  *B = 19;
+}
+```
+
+*************
+8. How do you recycle dynamically allocated storage when it is no longer needed so that its space can be reused to meet further storage allocation needs?
+
+* Answer: (inaccessbible storage) when the blok of storage has no pointer pointing to it. If such a situation should develop, we say that this storage block has become inaccessible - meaning that nobody can access it to read its value or to store a new value into it. It is potentially wasteful to allocate blocks of storage and then abandon them when they become inaccessible, since the pool of storage for allocating new blocks of storage could easily become used up. This could result in a storage allocation failure, in which, when we called the function malloc, there would be no more storage to allocate. (storage reclamation) In order to guard against this possibility, we can execute the special C storage reclamation function, free(x). This returns the block of storage, to which the pointer in X points, tot he pool of unallocated storage so that it can be used again. (In C, this pool of unallocated storage is often called dynamic memory) Reclaiming storage this way is analogous to recycling used bottles and newspapers. (gargabe collection) Sometimes, we use the word garbage to refer to inaccessible storage. Some programming languages, such as the list-processing language, LISP, have procedures for storage reclamation called garbage collection procedures that are triggered when available unallocated storage. C does not have such an automatic garbage collection procedure, however, so the recycling of storage must be explicitly managed by the programmer who writes C programs. (disposing of unused storage) if we want to recycle the storage block, before destroying the pointer to it in A(by overwriting this pointer with a copy of B's pointer), we could first perform the function call, free(A), as in the following sequence of actions:
+
+```C
+#include <stdlib.h>
+#include <stdio.h>
+
+int main()
+{
+  typedef int *IntegerPointer;
+
+  IntegerPointer A, B;
+  A = (IntegerPointer) malloc(sizeof(int));
+  B = (IntegerPointer) malloc(sizeof(int));
+
+  *A = 5;
+  *B = 19;
+  free(A) // first, recycle the storage block to which A refers 
+  A = B  // then, put a copy of B's pointer in A
+}
+```
+
+*************
 9. How can dynamically allocated storage become inaccessible in C?
 
+* Answer: when has no pointer pointing to that block of storage.
+
+**************
 10. What is garbage?
 
+* Answer: sometimes, we use the word garbage to refer to inaccessible storage. garbage collection procedures have a way of identifying which blocks of storage are inaccessible and of returning them to the pool of unallocated storage.
+
+****************
 11. what is a dangling pointer?
 
+* Answer: Once we have aliases pointing to the same storage location, a new programming danger arises. Starting with the resulting situation immediately above, suppose we called the function free(B). What would happen then, if we tried to evaluate the expression *A + 2? We don't know, but since *A might no longer contain a valid integer value, the result could be unexpected. First, the call to free(B) would return the storage location contraining 17, which is B's referent, to the pool of available storage. (When it does this, it might erase the value contained in the block, or join the block to another block of storage to make a bigger block -- just to nae two of several possibilities) Now, A contains a pointer used to point to. This dangling pointer might now point into the middle of a large block, formed when free(B) caused B's referent block to join another block in the storage reclamation process. The possibility exists that the referent of the dangling pointer doesn't even have a meaningful existence anymore in C. It is reasonable to consider this to be a programming error, even though neither the C compiler nor the running C system may have any means of detecting it. Consequently, the creation of dangling pointers is a pitfall that should be avoided.
+
+****************
 12. What is the lifetime of dynamically allocated storage?
 
+* Answer: The blocks of storage that pointers refer to are created dynamically during the running of the program and can be thought if as anonymous variables. Such variables have no explicit textual names in the program, and their lifetimes exist beyond the lifetimes of local variables in the program. For example, even though an anonymous variable might be created by a function having its own local variables that vanish after the function has terminated execution, the pointer values and the locations they reference onetheless have an existence outside the (temporary) existence of the function's local storage. One way to think of this is that dynamic sorage allocated for anonymous variables by malloc exists from the moment it is allocated until the moment when its storage is reclaiming sugin free(x), or until the programs execution terminates(if its storage is not reclaimed previously, using free(x))
+
+****************
 13. What is an anonymous variable?
+* Answer: One way to think of this is that dyna,ic storage allocated for anonymous variables by malloc exists from the moment it is allocated until the moment when its storage is reclaimd, using free(x), or until the program's execution terminates(if its storage is not reclaimed previously, using free(x))
+
+*****************
+
+### 2.3 - Exercises
+
+1. result: 7
+2. result: 5
+3. result: infinite loop
+3. result: i have cast error
+
+-----------------------------
+
+## Pointer Diagramming Notation - 2.4
+
+### Learning Objectives
+
+1. To understand how to interpret the pointer diagrams used in this book.
+2. To learn a notation for picturing linked representations that is helpful when reasonning about them.
+
+* ## review questions - 2.4
+
+1. what is the null address? 
+
+* Answer: null address is not the address of any node. It is depicted by a solid dot ( ° ) that represents an arrow with no tip that points nowhere.
+
+**************
+
+2. How is null address depicted in pointer diagramming notation?
+
+* Answer:  It is depicted by a solid dot ( ° ) that represents an arrow with no tip that points nowhere.
+
+**************
+
+3. What value represents the null address in C?
+
+* Answer: In C, the null pointer is represented by the special pointer value NULL.
+
+****************
+4. How is the end of a linked list indicated in pointer diagramming notation? 
+
+* Answer: This special null address is used to show where a linked list ends, and it is used to represent an empty structure(such as a linked list having no nodes).
+
+***************
+5. What is an empty linked list, and what value is used to indicate it?
+
+* Answer: This special null address is used to show where a linked list ends, and it is used to represent an empty structure(such as a linked list having no nodes).
+
+***************
+6. Explain the difference between explicit pointer variable notation and implicit pointer variable notation.
+
+* Answer: (1) explicitly as a box containing a pointer vale labeled on the left side with the name of the variable followed by colon, or (2) implicitly as an oval (or circle) containing the variable name and pointining to the node the pointer value references.
+
+*****************
+
+7. How is an unknown value signified in pointer diagramming notation?
+
+* Answer: When the value of a variable or the value of a field in a node is unknown, we may symbolize the unknown value by a question mark (?) for nonpointer values, or a pointer to a circle containing a question mark.
+
+*****************
+
+* ## 2.4 - Exercises
+
+1. (a) null, (b) GCM, (c) MEX, (d) null
+
+2. L->airport == MIA , L->link->airport == MEX, L->link->link->airport == ORD,
+
+3. 
+
+4. 
+
+5. 
+
+6. 
+
