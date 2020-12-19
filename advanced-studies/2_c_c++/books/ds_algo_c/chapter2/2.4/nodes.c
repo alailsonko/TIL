@@ -18,12 +18,12 @@ typedef struct Node {
 
 int main() {
   
-  node *l;
+    node *l;
 
-  (*l).Airport = "MIA";
-  (*l).Link.Airport = "MEX";
-  (*l).Link.Link.Airport = "ORD";
-  (*l).Link.Link.Link.Airport = "";
+    (*l).Airport = "MIA";
+    (*l).Link.Airport = "MEX";
+    (*l).Link.Link.Airport = "ORD";
+    (*l).Link.Link.Link.Airport = "";
  
-return 0;
+    return 0;
 };
