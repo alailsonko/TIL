@@ -308,13 +308,63 @@ int main()
 
 1. (a) null, (b) GCM, (c) MEX, (d) null
 
-2. L->airport == MIA , L->link->airport == MEX, L->link->link->airport == ORD,
+2. 
+
+```C
+#include <stdlib.h>
+#include <stdio.h>
+
+typedef struct Node {
+   char Airport;
+   struct Node * Link;
+} node;
+
+int main()
+{
+  node * L = NULL;
+  L = (node *) malloc(sizeof(node));
+
+  (*L).Airport = "MIA";
+  (*L).Link.Airport = "MEX";
+  (*L).Link.Link.Airport = "ORD";
+}
+```
 
 3. 
+
+```C
+#include <stdlib.h>
+#include <stdio.h>
+
+typedef struct Node {
+   char Airport;
+   struct Node * Link;
+} node;
+
+int main()
+{
+  node * L = NULL;
+  L = (node *) malloc(sizeof(node));
+
+  (*L).Airport = "MIA";
+  (*L).Link.Airport = "MEX";
+  (*L).Link.Link.Airport = "ORD";
+}
+```
 
 4. 
 
 5. 
 
 6. 
+
+
+
+## Linear Linked Lists - 2.5
+
+### Learning Objectives
+
+1. To understand how to represent and manipulate linked lists using C's.
+2. To develop skill in designing and implementing linked list algorithms.
+3. To learn a set of useful basic linked list operations.
 

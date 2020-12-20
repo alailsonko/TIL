@@ -1,29 +1,21 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-typedef struct Data {
-    char Airport;
-    link Link;
-} data;
+typedef struct node {
+    int val;
+    struct node *next;
+} node_t;
 
-typedef struct Link {
-   node Link;
-   char Airport;
-} link;
 
-typedef struct Node {
-    link Link;
-    char Airport;
-} node;
 
 int main() {
-  
-    node *l;
-
-    (*l).Airport = "MIA";
-    (*l).Link.Airport = "MEX";
-    (*l).Link.Link.Airport = "ORD";
-    (*l).Link.Link.Link.Airport = "";
+    
+    node_t * head = NULL;
+    head = (node_t *) malloc(sizeof(node_t));
  
-    return 0;
-};
+    head->val = 1;
+    head->next = (node_t *) malloc(sizeof(node_t));
+    head->next->val = 2;
+    head->next->next = NULL;
+ 
+}
