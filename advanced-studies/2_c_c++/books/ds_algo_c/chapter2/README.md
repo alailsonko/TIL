@@ -368,3 +368,88 @@ int main()
 2. To develop skill in designing and implementing linked list algorithms.
 3. To learn a set of useful basic linked list operations.
 
+* ## 2.5 Review Questions
+
+1. What is top-down programming using stepwise refinement?
+
+Answer: The goals in a program strategy can be achieved by supplying more specific programming details. The process of filling in such details in a series of specific step is called stepwise refinement. The method of starting with a top-level design and expanding its details progressively until an actual program is developed is called top-down programming.
+----------------------
+2. When defining a struct for a NodeType in C, how can we arrange for a Link field to contain a pointer to the NodeType we are defining?
+
+Answer: We need to define a system of nodes and pointers to serve as the foundation for manipulating linked lists. To do this, we define a structure type for list nodes, called NodeType, in the type definition section of our program as follows: 
+
+```C
+
+typedef char AirportCode[4];
+
+typedef struct NodeTag {
+   AirportCode Airport;
+   struct NodeTag *Link;
+} NodeType;
+
+```
+This defines a NodeType to be a struct having two members(or components, or fields, as we shall sometimes call them) which are: (1) an Airport field containing a three-letter AirportCode, and (2) a Link field containing a pointer to a NodeType.
+In order to make it possible for the Link field of a NodeType struct to contain a pointer to another NodeType struct, the typedef above introduces the tag NodeTag after the word struct and then specifies the second member of the struct using struct NodeTag *Link; while it is illegal in C to attempt to define a struct having a member which is a pointer to structs of the same type, as is accomplished above.
+
+3. What value in C is automatically a value of every C pointer type?
+
+Answer: Another important idea is that the special null pointer, NULL, is automatically considered to be a value that belongs to every pointer type that is defined in C. Thus it is possible to write assignment such a L->Link = NULL; to put the null pointer into the Link field of the node that the pointer in L references, or to test a pointer value to see if it is null, as in if (L->Link == NULL) {/*L points to the last node in the list *}. [Note: In ANSI C, the null pointer simply has the value 0 and NULL is just a form of "visualdocumentation" for its value.]
+
+* ## 2.5 Exercises
+
+Assume that the folowing types and variables have been defined in C and are available for use: 
+
+```C
+
+typedef char AirportCode[4];
+
+typedef struct NodeTag {
+   AirportCode Airport;
+   struct NodeTag *Link;
+} NodeType;
+
+NodeType *L, *M, *N;
+
+```
+
+1. Write a function, insertNewFirstNode(A, &L), which inserts a node having the airport code A as the new first node of list, L, Where &L is the address of variable L.
+
+2. Write a function, DeleteFirst(&L), which deletes the first node of a linked list L.
+
+3. Given a non-null pointer N to a node of a list L, and a pointer M to a new node to be insrted. write a C function to insert the node that is M's referent before the node that is N's referent on list L. [Hint: Adjust pointers to insert M after N and then swap the aiport codes in N and M.]
+
+4. Write a function, Copy(L), which makes a copy of a linked list, L, and returns a pointer to the first node of the copy.
+
+5. Write a function, Reverse(&L), which reveres the order of the nodes on list L. For example, if L == (ZRH, GLA, YYZ) beforehand, then executing Reverse(&L) changes L to be the list L == (YYZ, GLA, ZRH). [Hint: Write two subroutines to remove the first node N of a list L2, and to insert a node N as the new first node on a list L2. Then, starting with an empty list L2 = NULL, successively remove nodes from L1 and insert them on L2 until L1 is empty.] (Note: The airport codes: ZRH, GLA, and YYZ stand for Zurich, Switzerland; Glasgow, Sotland; and Toronto,Ontario, respectively.)
+
+6. What is wrong with the following search program for finding the node on list L containing the airport code A and returning a pointer to it?
+```C
+
+NodeType *FindNode(char *A, NodeType *L) {
+   while ((strcmp(L->Airport,A) != 0) && (L != NULL)) {
+      L = L->Link;
+   }
+   return L;
+}
+
+```
+How could you fix the bug in the program above by changing only one line?
+
+7. Given two lists L1 and L2 write a function, Concat(L1, L2), to return a pointer to a list in which the nodes of L2 follow the nodes of L1. For example, if, beforehand, L1 == (ARN, BRU) and L2 == (JFK, SAN, HKG), the the node pointer returned by Concat(L1, L2) should point to the list (ARN, BRU, JFK, SAN, HKG). (Note: ARN is Stockholm, Sweden,and HKG, Hong Kong).
+
+8. What is wrong with the following algorithm for finding the last node of a list and returning a pointer to it?
+
+```C
+NodeType *LastNode(NodeType *L) {
+   if(L != NULL) {
+      do {
+         L = L->Link;
+      } while(L->Link != NULL);
+   }
+   return L;
+}
+
+```
+
+9 In Program 2.15, DeleteLastNode(NodeType *L), if you want to delete the last node of a list, L, why does the parameter have to be a pointer to a variable containing a node pointer? Give an example of a list that would fail to have its last node deleted if the parameter had been only a node pointer as in the function prototype void DeleteLastNode(NodeType *L).
+
