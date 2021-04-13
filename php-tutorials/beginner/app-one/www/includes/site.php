@@ -14,6 +14,9 @@
         include "article-header.php";
      ?>
      <p>hello world</p>
-     <?php include "footer.html"; ?>
+     <?php include "useful-tools.php";
+       sayHi("alailson ");
+       echo $feetInMile;
+     ?>
 </body>
 </html>
