@@ -7,6 +7,7 @@ defmodule HelloWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug HelloWeb.Plugs.Locale, "en"
   end
 
   pipeline :api do
@@ -17,6 +18,18 @@ defmodule HelloWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    resources "/users", UserController
+    resources "/posts", PostController, only: [:index, :show]
+    resources "/comments", CommentController, except: [:delete]
+    resources "/reviews", ReviewController
+    get "/hello", HelloController, :index
+    get "/hello/:messenger", HelloController, :show
+  end
+
+  scope "/admin", HelloWeb.Admin, as: :admin do
+    pipe_through :browser
+
+    resources "/reviews", ReviewController
   end
 
   # Other scopes may use custom stacks.
