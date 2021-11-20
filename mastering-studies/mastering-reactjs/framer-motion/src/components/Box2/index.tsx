@@ -1,25 +1,26 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
-export default function Box1() {
+export default function Box2() {
   const [isAnimating, setIsAnimating] = useState<boolean>(false);
   return (
     <div className="box-container">
       <motion.div
         className="box"
-        animate={{
-          x: isAnimating ? "70vw" : 0,
-          opacity: isAnimating ? 1 : 0.5,
-          rotate: isAnimating ? 360 : 0,
+        drag
+        dragConstraints={{
+          right: 20,
+          left: -20,
+          top: 5,
+          bottom: 10,
         }}
-        initial={{
-          opacity: 0.1,
+        whileHover={{
+          scale: 1.1
         }}
-        transition={{
-          type: "spring",
-          stiffness: 60,
+        whileTap={{
+          scale: 0.9
         }}
-        onClick={() => setIsAnimating(!isAnimating)}
+        // onClick={() => setIsAnimating(!isAnimating)}
       ></motion.div>
     </div>
   );
