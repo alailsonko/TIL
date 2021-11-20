@@ -1,0 +1,4 @@
+/home/alailson/Documents/github/TIL/qt/build-getting-started-Desktop-Debug/CMakeFiles/rebuild_cache.dir
+/home/alailson/Documents/github/TIL/qt/build-getting-started-Desktop-Debug/CMakeFiles/edit_cache.dir
+/home/alailson/Documents/github/TIL/qt/build-getting-started-Desktop-Debug/CMakeFiles/getting-started.dir
+/home/alailson/Documents/github/TIL/qt/build-getting-started-Desktop-Debug/CMakeFiles/getting-started_autogen.dir
