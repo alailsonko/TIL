@@ -7,6 +7,31 @@
   pointer-events: none;
 }
 
+.item {
+  height: 30px;
+  width: 50px;
+  background-color: aqua;
+  order: 5;
+  flex-grow: 4;
+  flex-shrink: 3;
+  align-self: center;
+}
+
+.square {
+  background-color: red;
+  height: 80px;
+  width: 100%;
+  display: flex;
+  margin: 10px 10px 10px 0;
+  flex-direction: ;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  align-items: center;
+  /* align-content: center; */
+  flex-direction: row;
+  gap: 10px 50px;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
