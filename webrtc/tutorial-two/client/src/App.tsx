@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import { format } from "date-fns";
+
+import { io, Socket } from "socket.io-client";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [timer, setTimer] = useState<string>(new Date().toDateString());
+  const [socket, setSocket] = useState<Socket>(io("http://localhost:3005"));
+
+  useEffect(() => {
+    const newSocket = io("http://localhost:3005");
+    setSocket(newSocket);
+    return () => {
+      newSocket.close();
+    };
+  }, [setSocket]);
+
+  useEffect(() => {
+      socket!.on("timer", (arg1: React.SetStateAction<string>) => {
+        console.log("timer", arg1);
+        setTimer(arg1);
+        console.log(socket);
+        console.log(socket.id);
+      });
+  }, [socket, timer]);
+
+  return <div className="App">{format(new Date(timer!), "HH:mm:ss")}</div>;
 }
 
 export default App;
