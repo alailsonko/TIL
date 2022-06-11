@@ -1,0 +1,24 @@
+<extends src="base.html">
+  <block name="head"><title>Counter</title></block>
+  <block name="content">
+    <h1>Counter</h1>
+    <section class="counter">
+      <div class="count">0</div>
+      <div class="controls">
+        <div class="control-set">
+          <button id="start">▶️ Start</button>
+          <button id="pause">⏸ Pause</button>
+        </div>
+        <div class="control-set">
+          <input id="set-amount" type="number" min="0" value="1" />
+          <button id="set">Set</button>
+          <button id="reset">Reset</button>
+        </div>
+        <div class="control-set">
+          <button id="count-up">⬆️ Count Up</button>
+          <button id="count-down">⬇️ Count Down</button>
+        </div>
+      </div>
+    </section>
+  </block>
+</extends>

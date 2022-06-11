@@ -1,0 +1,33 @@
+@import '../../shared/colors.scss';
+
+#fetch-form {
+  width: 100%;
+  display: flex;
+  gap: 0.5em;
+  margin-bottom: 1em;
+  input {
+    width: 100%;
+  }
+  button {
+    width: 200px;
+  }
+}
+
+article {
+  color: $teal;
+}
+
+#pokemon {
+  padding: 1em;
+  // border: 1px solid $coral;
+}
+
+.data {
+  display: flex;
+  border: 1px solid $blue;
+  padding: 1em;
+  table {
+    width: 100%;
+    text-align: center;
+  }
+}
