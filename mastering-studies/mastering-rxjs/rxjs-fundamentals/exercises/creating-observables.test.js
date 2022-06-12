@@ -1,4 +1,4 @@
-import { from, of } from 'rxjs';
+import { from, Observable, of } from 'rxjs';
 
 describe('Exercise: Creating Observables', () => {
   describe(of, () => {
@@ -9,13 +9,18 @@ describe('Exercise: Creating Observables', () => {
      */
     it.skip('should create an observable out of a single value', () => {
       const result = [];
-
+      of(1).subscribe((value) => result.push(value));
       expect(result).toEqual([1]);
     });
 
     it.skip('should take a series of objects as arguments and create an observable', () => {
       const result = [];
-
+      of(
+        { type: 'INCREMENT', payload: 1 },
+        { type: 'RESET' },
+        { type: 'INCREMENT', payload: 2 },
+        { type: 'DECREMENT', payload: 1 },
+      ).subscribe((value) => result.push(value));
       expect(result).toEqual([
         { type: 'INCREMENT', payload: 1 },
         { type: 'RESET' },
@@ -28,7 +33,12 @@ describe('Exercise: Creating Observables', () => {
   describe(from, () => {
     it.skip('should take an array of objects as arguments and create an observable', () => {
       const result = [];
-
+      from([
+        { type: 'INCREMENT', payload: 1 },
+        { type: 'RESET' },
+        { type: 'INCREMENT', payload: 2 },
+        { type: 'DECREMENT', payload: 1 },
+      ]).subscribe((value) => result.push(value));
       expect(result).toEqual([
         { type: 'INCREMENT', payload: 1 },
         { type: 'RESET' },
@@ -37,7 +47,7 @@ describe('Exercise: Creating Observables', () => {
       ]);
     });
 
-    it.skip('should create an observable from a generator', () => {
+    it('should create an observable from a generator', () => {
       function* values() {
         yield 1;
         yield 2;
@@ -46,7 +56,7 @@ describe('Exercise: Creating Observables', () => {
       }
 
       const result = [];
-
+      from(values()).subscribe((value) => result.push(value));
       expect(result).toEqual([1, 2, 3]);
     });
 
@@ -66,9 +76,18 @@ describe('Exercise: Creating Observables', () => {
     it.skip('should create an observable from a promise', (done) => {
       const promise = Promise.resolve(1);
       const result = [];
-
-      expect(result).toEqual([1]);
-      done();
+      from(promise).subscribe({
+        next(value) {
+          result.push(value);
+        },
+        error(error) {
+          done.fail(error);
+        },
+        complete() {
+          expect(result).toEqual([1]);
+          done();
+        },
+      });
     });
 
     /**
@@ -78,9 +97,29 @@ describe('Exercise: Creating Observables', () => {
      */
     it.skip('should create an observable from a promise that rejects', (done) => {
       const promise = Promise.reject({ error: 'Something terrible happened' });
+      from(promise).subscribe({
+        error(error) {
+          expect(error).toEqual({ error: 'Something terrible happened' });
+          done();
+        },
+      });
+    });
 
-      expect(error).toEqual({ error: 'Something terrible happened' });
-      done();
+    it('should deal with a bespoke observable', (done) => {
+      const result = [];
+      const observable = new Observable((subscriber) => {
+        subscriber.next(1);
+        subscriber.next(2);
+        subscriber.next(3);
+        subscriber.complete();
+      });
+      from(observable).subscribe({
+        next(value) {
+          result.push(value);
+        }
+      });
+      expect(result).toEqual([1, 2, 3]);
+      done()
     });
   });
 });

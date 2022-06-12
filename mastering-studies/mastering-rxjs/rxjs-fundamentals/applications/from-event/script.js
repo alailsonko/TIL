@@ -2,10 +2,14 @@ import { fromEvent } from 'rxjs';
 
 const button = document.getElementById('create-notification');
 const notificationMessages = document.getElementById('notification-messages');
-
+let count = 0
 const createNotificationElement = () => {
   const element = document.createElement('article');
-  element.innerText = 'Something happened.';
+  element.innerText = `Something happened. ${++count}`;
+  fromEvent(element, 'click').subscribe((event) => {
+    console.log('Clicked', event);
+    element.remove()
+  })
   return element;
 };
 
@@ -22,3 +26,12 @@ const addMessageToDOM = () => {
  * - Use `addMessageToDOM` to add a useless message to the DOM whenever the
  *   stream emits a value.
  */
+
+
+const click$ = fromEvent(button, 'click');
+click$.subscribe({
+  next: () => {
+    addMessageToDOM();
+  }
+});
+
