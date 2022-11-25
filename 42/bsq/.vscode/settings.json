@@ -1,0 +1,22 @@
+{
+	"42header.email": "aalailson3@fake.com",
+	"42header.username": "aalailson3",
+	"editor.tabSize": 4,
+	"editor.insertSpaces": true,
+	"editor.renderWhitespace": "all",
+	"files.trimTrailingWhitespace": true,
+	"files.insertFinalNewline": false,
+	"C_Cpp.errorSquiggles": "Disabled",
+	"files.associations": {
+		"*.json.liquid": "json",
+		"*.yaml.liquid": "yaml",
+		"*.md.liquid": "markdown",
+		"*.js.liquid": "liquid-javascript",
+		"*.css.liquid": "liquid-css",
+		"*.scss.liquid": "liquid-scss",
+		"fcntl.h": "c",
+		"limits": "c"
+	},
+	"editor.tabCompletion": "on",
+	"diffEditor.codeLens": true,
+}

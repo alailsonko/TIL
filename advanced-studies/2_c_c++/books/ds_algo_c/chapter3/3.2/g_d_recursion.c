@@ -5,16 +5,17 @@
 
 int SumSquares(int m, int n) {
     if(m < n) {
-        printf("%d\n", m);
-        return SumSquares(m,n - 1) + n*n;
+        printf("m %d\n", m);
+        printf("n %d\n", n);
+        return m*m + SumSquares(m + 1,n);
     } else {
         printf("%d\n", m);
-        return n*n;
+        return m*m;
     }
 }
 
 int main() {
     printf("%d\n", SumSquares(3, 6));
-    
+
     return 0;
 }
