@@ -3,3 +3,14 @@ bsq
 *_map*
 
 a.out
+
+**/*.o
+
+**/*.pyc
+
+**/*.a
+
+../**/__pycache__
+
+listdir
+
