@@ -1,0 +1,55 @@
+# .NET and Visual Studio files
+bin/
+obj/
+*.suo
+*.user
+*.vscode
+.vs/
+*.csproj.user
+*.cache
+*.DotSettings
+*.csproj.nuget.cache
+*.csproj.nuget.g.props
+*.csproj.nuget.g.targets
+**/.history/
+**/.sln.ide/
+*.sln.docstates
+
+# Packages
+packages/
+*.nupkg
+*.paket/
+*.lock
+
+# Logs and databases
+*.log
+*.sqlite
+*.mdf
+*.ldf
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+[Oo]bj/
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# Misc
+*.psess
+*.vssscc
+*.builds
+*.sublime-project
+*.sublime-workspace
+*.docstates
+*.xccheckout
+*.sw*
+Icon?
+*.vsp
+*.psess
+*.bak
+*~
+*.dbmdl
+*.dbproj.schemaview
+*.docstates.suo
+*.cache
